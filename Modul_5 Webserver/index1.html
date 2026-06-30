@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Iqbal Majid Ramadhan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* CSS Variables untuk Tema Warna */
+        :root {
+            --bg-color: #0f172a;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --card-bg: #1e293b;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Utility Class untuk menyembunyikan sitasi saat web dipublikasikan */
+        .cite {
+            font-size: 0.75em;
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h2.section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        #home {
+            align-items: flex-start;
+        }
+
+        #home h1 {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        #home h2 {
+            font-size: 2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--accent);
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        .contact-info li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .contact-info i {
+            color: var(--accent);
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        /* Experience & Education */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item h3 {
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .timeline-item h4 {
+            color: var(--text-main);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .timeline-item .date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .timeline-item ul {
+            margin-left: 20px;
+            color: var(--text-muted);
+        }
+
+        .timeline-item ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card h3 {
+            color: var(--text-main);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .project-tech {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-family: monospace;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-tag {
+            background: var(--card-bg);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--card-bg);
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content { grid-template-columns: 1fr; }
+            #home h1 { font-size: 3rem; }
+            nav ul { display: none; /* Simplifikasi untuk mobile */ }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home" class="logo">IMR.</a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#experience">Pengalaman</a></li>
+            <li><a href="#projects">Proyek</a></li>
+            <li><a href="#skills">Keahlian</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h2>Halo, saya</h2>
+        <h1>Iqbal Majid Ramadhan <span class="cite">[cite: 1]</span></h1>
+        <h2>Automation Engineering Student | Industrial Control & Robotics <span class="cite">[cite: 2]</span></h2>
+        <a href="#projects" class="btn">Lihat Portofolio</a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Saya adalah Mahasiswa Teknologi Rekayasa Otomasi di Universitas Diponegoro dengan IPK 3.71 <span class="cite">[cite: 4]</span>. Saya memiliki minat mendalam pada bidang industri manufaktur, industri proses, instrumentasi, kontrol, dan robotika <span class="cite">[cite: 4]</span>.</p>
+                <p>Pengalaman saya dalam berbagai proyek sistem kontrol telah membekali saya dengan keahlian dalam pemrograman C, desain kelistrikan, serta penggunaan perangkat lunak keteknikan seperti Arduino, Solidworks, Proteus, dan LabVIEW <span class="cite">[cite: 5]</span>. Di luar aspek teknis, saya sangat mengedepankan kemampuan kerja sama tim, pemecahan masalah yang kritis, serta komunikasi yang baik untuk memastikan setiap proyek berjalan sukses <span class="cite">[cite: 6]</span>.</p>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> Bekasi, Jawa Barat <span class="cite">[cite: 2]</span></li>
+                    <li><i class="fas fa-phone"></i> +62 813-9502-250 <span class="cite">[cite: 2]</span></li>
+                    <li><i class="fas fa-envelope"></i> iqbalmajid1104@gmail.com <span class="cite">[cite: 2]</span></li>
+                </ul>
+            </div>
+            <div class="about-education">
+                <div class="timeline-item">
+                    <h3>Universitas Diponegoro <span class="cite">[cite: 9]</span></h3>
+                    <h4>Sarjana Terapan - Teknologi Rekayasa Otomasi <span class="cite">[cite: 10]</span></h4>
+                    <span class="date">2023 - Sekarang <span class="cite">[cite: 17]</span> | IPK: 3.71 <span class="cite">[cite: 10]</span></span>
+                </div>
+                <div class="timeline-item">
+                    <h3>SMK Mitra Industri MM2100 <span class="cite">[cite: 11]</span></h3>
+                    <h4>Teknik Elektronika Industri <span class="cite">[cite: 12]</span></h4>
+                    <span class="date">2020 - 2023 <span class="cite">[cite: 18]</span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">Pengalaman Kerja & Organisasi</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Peserta Praktik Kerja Lapangan - Divisi Produksi <span class="cite">[cite: 16]</span></h3>
+                <h4>PT. Yuju Indonesia (Bekasi, Jawa Barat) <span class="cite">[cite: 14, 15]</span></h4>
+                <span class="date">Desember 2022 - Maret 2023 <span class="cite">[cite: 19]</span></span>
+                <ul>
+                    <li>Membantu pencapaian target produksi harian Discharge Grille secara konsisten di atas 80% selama 3 bulan PKL <span class="cite">[cite: 20]</span>.</li>
+                    <li>Menginisiasi rekomendasi pergantian dan pembaruan komponen yang kondisinya di bawah kelayakan (<75%), sehingga mencegah downtime produksi <span class="cite">[cite: 21]</span>.</li>
+                    <li>Menyusun laporan evaluasi performa peralatan secara berkala sebagai bahan tinjauan manajemen <span class="cite">[cite: 22]</span>.</li>
+                    <li>Meningkatkan efektivitas komunikasi antar level staf dan manajemen dalam sesi evaluasi harian, sehingga proses evaluasi menjadi lebih terarah dan terstruktur <span class="cite">[cite: 23]</span>.</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>Staff Ahli Divisi Kaderisasi dan Potensi <span class="cite">[cite: 40]</span></h3>
+                <h4>HIMATRO (Bidang K&PSDM) <span class="cite">[cite: 40]</span></h4>
+                <span class="date">Agustus 2025 - Sekarang <span class="cite">[cite: 44]</span></span>
+                <ul>
+                    <li>Ketua Pelaksana PKA (Pembentukan Karakter Angkatan) <span class="cite">[cite: 41]</span>.</li>
+                    <li>Staff Divisi Konsumsi - LKMM Tingkat Dasar 2025 <span class="cite">[cite: 42]</span>.</li>
+                    <li>Wakil Ketua Pelaksana - LKMM Pra Dasar <span class="cite">[cite: 43]</span>.</li>
+                    <li>Sebelumnya menjabat sebagai Staff Muda (Agustus 2024 - Februari 2025) <span class="cite">[cite: 40, 44]</span>.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Proyek Unggulan</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Sistem Kontrol Suhu pada Tangki dengan Boiler <span class="cite">[cite: 25]</span></h3>
+                <div class="project-tech">Arduino IDE | LabVIEW | Proteus | Solidworks <span class="cite">[cite: 26]</span></div>
+                <p>Merancang sistem kontrol suhu otomatis pada tangki menggunakan mikrokontroler Arduino dengan algoritma kontrol on/off <span class="cite">[cite: 27]</span>. Membuat desain mekanik dengan Solidworks, skema elektrik, serta antarmuka monitoring LabVIEW <span class="cite">[cite: 28, 29]</span>.</p>
+                <p>Hasil proyek ini dipercaya menjadi modul praktikum resmi untuk mahasiswa semester 4 <span class="cite">[cite: 30]</span>.</p>
+            </div>
+
+            <div class="project-card">
+                <h3>Prototipe Smart Farm Kandang Ayam Petelur Otomatis <span class="cite">[cite: 31]</span></h3>
+                <div class="project-tech">ESP32 | Arduino IDE | EasyEDA | Proteus | Fritzing <span class="cite">[cite: 33, 34]</span></div>
+                <p>Merancang skema elektrik sistem otomasi kandang ayam menggunakan sensor DHT22 dan Load Cell HX711 <span class="cite">[cite: 34]</span>. Memprogram pembacaan sensor untuk memicu relay kipas/heater berdasarkan threshold suhu $25-30^{\circ}C$ dan aktuasi servo untuk pakan <span class="cite">[cite: 35]</span>.</p>
+                <p>Sistem ini juga dilengkapi penjadwalan konveyor berbasis RTC DS3231 dengan logika non-blocking millis() <span class="cite">[cite: 36]</span>.</p>
+            </div>
+
+            <div class="project-card">
+                <h3>MPS Separating Station Automation & Fuzzy Logic Environment Control</h3>
+                <div class="project-tech">Codesys | C Programming | Ladder Diagram</div>
+                <p>Melakukan pengalamatan I/O (I/O mapping) dan merancang Ladder Diagram untuk proses otomasi industri pada MPS Separating Station, meliputi dokumentasi dan identifikasi fungsi sensor difus, warna, serta jarak.</p>
+                <p>Selain itu, mengembangkan program otomasi lingkungan berbasis C menggunakan metode logika fuzzy (fuzzifikasi suhu dan kelembaban) untuk mengontrol durasi aktuator penyiraman.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Keahlian Perangkat Lunak & Teknis</h2>
+        <div class="skills-container">
+            <div class="skill-tag">Ladder Diagram (CX-One, CTRLX, Schneider) <span class="cite">[cite: 56]</span></div>
+            <div class="skill-tag">Codesys PLC Programming</div>
+            <div class="skill-tag">Festo FluidSIM Pneumatik & Hidrolik <span class="cite">[cite: 56]</span></div>
+            <div class="skill-tag">C / C++ (Fuzzy Logic Application)</div>
+            <div class="skill-tag">Arduino IDE & ESP32 <span class="cite">[cite: 56]</span></div>
+            <div class="skill-tag">LabVIEW <span class="cite">[cite: 57]</span></div>
+            <div class="skill-tag">STM32CubeIDE & STM32CubeMX <span class="cite">[cite: 57]</span></div>
+            <div class="skill-tag">Visual Studio Code <span class="cite">[cite: 57]</span></div>
+            <div class="skill-tag">PSIM & Proteus <span class="cite">[cite: 57, 58]</span></div>
+            <div class="skill-tag">EasyEDA & Fritzing <span class="cite">[cite: 58]</span></div>
+            <div class="skill-tag">Solidworks Desain Mekanik <span class="cite">[cite: 58]</span></div>
+            <div class="skill-tag">Welding & Cutting Wheel <span class="cite">[cite: 58]</span></div>
+            <div class="skill-tag">Kepemimpinan & Pemecahan Masalah <span class="cite">[cite: 59]</span></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Iqbal Majid Ramadhan. Dirancang sebagai Portofolio Profesional.</p>
+    </footer>
+
+</body>
+</html>
